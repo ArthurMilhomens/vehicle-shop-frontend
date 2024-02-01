@@ -1,7 +1,8 @@
-import { Inter } from "next/font/google";
+import { Flex, SimpleGrid } from "@chakra-ui/react";
+import { inter, kanit, roboto_mono } from "./fonts";
 import { Providers } from "./providers";
-
-const inter = Inter({ subsets: ["latin"] });
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 
 export default function RootLayout({
   children,
@@ -9,9 +10,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
+    <html
+      lang="en"
+      className={`${inter.variable} ${roboto_mono.variable} ${kanit.variable}`}
+    >
+      <body>
+        <Providers>
+          <Header />
+          <Flex w="100%">
+            <Sidebar />
+
+            <SimpleGrid
+              flex="1"
+              gap="4"
+              minChildWidth="360px"
+              alignItems="flex-start"
+            >
+              {children}
+            </SimpleGrid>
+          </Flex>
+        </Providers>
       </body>
     </html>
   );
