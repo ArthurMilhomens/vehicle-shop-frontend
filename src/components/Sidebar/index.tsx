@@ -24,7 +24,7 @@ export default function Sidebar() {
     return (
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay>
-          <DrawerContent bg="gray.100" p="4">
+          <DrawerContent bg="gray.900" pt="4">
             <DrawerCloseButton mt="6" />
             <DrawerHeader>Filtro</DrawerHeader>
 
@@ -41,9 +41,8 @@ export default function Sidebar() {
     <Box
       as="aside"
       w="80"
-      h="full"
-      borderRightWidth="2px"
-      borderColor="gray.300"
+      h="93vh"
+      boxShadow="lg"
     >
       <SidebarContent />
     </Box>

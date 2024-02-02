@@ -27,8 +27,7 @@ export default function Header() {
       px="8"
       align="center"
       bgColor="gray.900"
-      borderBottomWidth="2px"
-      borderColor="gray.300"
+      boxShadow="lg"
     >
       {!isWideVersion ? (
         <IconButton

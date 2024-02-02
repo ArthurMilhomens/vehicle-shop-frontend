@@ -15,7 +15,7 @@ export default function SearchBox() {
       ml="auto"
       maxW={400}
       alignSelf="center"
-      color="gray.200"
+      color="gray.100"
       position="relative"
       bg="gray.700"
       borderRadius="8px"
@@ -25,10 +25,10 @@ export default function SearchBox() {
         variant="unstyled"
         mr="4"
         placeholder="Pesquisar veículo"
-        _placeholder={{ color: "gray.400" }}
+        _placeholder={{ color: "gray.200" }}
         ref={searchInputRef}
       />
-      <Icon as={RiSearchLine} color="gray.400" fontSize="20" />
+      <Icon as={RiSearchLine} color="gray.200" fontSize="20" />
     </Flex>
   );
 }

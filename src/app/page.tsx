@@ -1,4 +1,5 @@
 'use client'
+import Carbox from "@/components/Carbox";
 import { useVehicles } from "@/service/hooks/useVehicles";
 import { Stack, Text } from "@chakra-ui/react";
 import Head from "next/head";
@@ -13,9 +14,10 @@ export default function Home() {
       </Head>
       <main>
         <Stack>
-          {data?.vehicles?.map((vehicle) => (
+          {/* {data?.vehicles?.map((vehicle) => (
             <Text>{vehicle.brand} - {vehicle.model}</Text>
-          ))}
+          ))} */}
+          <Carbox />
         </Stack>
       </main>
     </>
