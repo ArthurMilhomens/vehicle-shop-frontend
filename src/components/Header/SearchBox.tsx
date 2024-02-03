@@ -12,7 +12,7 @@ export default function SearchBox() {
       flex="1"
       py="4"
       px={["4", "8"]}
-      ml="auto"
+      ml="95px"
       maxW={400}
       alignSelf="center"
       color="gray.100"

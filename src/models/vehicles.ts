@@ -3,4 +3,6 @@ export type VehicleType = {
     name: string;
     brand: string;
     model: string;
+    image: string;
+    price: number;
 }
