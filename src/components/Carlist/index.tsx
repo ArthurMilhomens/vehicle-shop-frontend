@@ -4,7 +4,7 @@ import ActiveFilters from "./ActiveFilters";
 import { useVehicles } from "@/service/hooks/useVehicles";
 
 export default function Carlist() {
-  const { data } = useVehicles();
+  const { data } = useVehicles({});
   return (
     <>
       <ActiveFilters />

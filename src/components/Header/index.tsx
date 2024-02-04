@@ -7,16 +7,24 @@ import Cookies from "universal-cookie";
 import LoginButton from "./LoginButton";
 import { RiMenuLine } from "react-icons/ri";
 import { useSidebarDrawer } from "@/contexts/SidebarDrawerContext";
+import { useEffect, useState } from "react";
+import { useLoginModal } from "@/contexts/LoginModalContext";
 
 export default function Header() {
   const cookies = new Cookies();
-  const user = cookies.get("user");
+  const [user, setUser] = useState(cookies.get("user"));
   const { onOpen } = useSidebarDrawer();
+  const { isOpen } = useLoginModal();
 
   const isWideVersion = useBreakpointValue({
       base: false,
       lg: true
   })
+
+  useEffect(() => {
+    let newuser = cookies.get("user");
+    newuser && setUser(newuser); 
+  }, [isOpen])
 
   return (
     <Flex

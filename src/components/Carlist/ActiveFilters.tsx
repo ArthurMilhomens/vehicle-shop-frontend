@@ -7,9 +7,9 @@ export default function ActiveFilters() {
   return (
     <Flex w="full" p="4" justifyContent="space-between">
       <HStack spacing={2}>
-        <FilterTag onDelete={() => {}}>AUDI</FilterTag>
+        {/* <FilterTag onDelete={() => {}}>AUDI</FilterTag>
         <FilterTag onDelete={() => {}}>DE 2020 A 2022</FilterTag>
-        <FilterTag onDelete={() => {}}>R$ 400.000</FilterTag>
+        <FilterTag onDelete={() => {}}>R$ 400.000</FilterTag> */}
         <FilterTag onDelete={() => {}}>
           <HStack>
             <RiArrowUpDownLine />

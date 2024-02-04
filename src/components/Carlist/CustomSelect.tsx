@@ -8,16 +8,19 @@ export default function CustomSelect() {
       <MenuButton
         as={Button}
         rightIcon={<RiArrowDownSLine />}
-        bgColor="orange.950"
         color="gray.50"
         w="200px"
-        variant="filled"
+        variant="outline"
         _hover={{
-          bgColor: "orange.700",
+          bgColor: "gray.800",
         }}
         _focus={{
-          bgColor: "orange.950",
-          borderColor: "orange.950",
+          bgColor: "gray.600",
+          borderColor: "gray.50",
+        }}
+        _active={{
+          bgColor: "gray.600",
+          borderColor: "gray.50",
         }}
       >
         Ordenação da lista

@@ -1,10 +1,9 @@
-import { Flex, Button } from "@chakra-ui/react";
-import { CgProfile } from "react-icons/cg";
+import { useLoginModal } from "@/contexts/LoginModalContext";
+import { Avatar } from "@chakra-ui/react";
 
 export default function LoginButton() {
+  const { onOpen } = useLoginModal();
   return (
-    <Flex align="center">
-      <Button leftIcon={<CgProfile />} colorScheme="orange">Entrar</Button>
-    </Flex>
+    <Avatar size="md" src="https://bit.ly/broken-link" onClick={onOpen} cursor="Pointer" />
   );
 }

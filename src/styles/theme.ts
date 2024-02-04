@@ -17,6 +17,9 @@ export const theme = extendTheme({
       "800": "#1c1c1c",
       "900": "#151515",
     },
+    "warning": {
+      "500": "#E10000"
+    },
   },
   styles: {
     global: {

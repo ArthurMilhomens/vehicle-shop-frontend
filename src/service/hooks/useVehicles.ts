@@ -6,14 +6,26 @@ type GetVehiclesResponse = {
     vehicles: VehicleType[];
 }
 
-export async function getVehicles(): Promise<GetVehiclesResponse> {
+interface GetVehiclesFilters {
+    orderBy?: string;
+    type?: "decreasing" | "increasing";
+    minPrice?: string;
+    maxPrice?: string;
+    minMileage?: string;
+    maxMileage?: string;
+    name?: string;
+}
+
+export async function getVehicles({
+
+}: GetVehiclesFilters): Promise<GetVehiclesResponse> {
     const { data } = await api.get('/vehicles');
 
     return { vehicles: data }
 }
 
-export function useVehicles() {
-    return useQuery(['vehicles'], () => getVehicles(), {
+export function useVehicles(filters: GetVehiclesFilters){
+    return useQuery(['vehicles'], () => getVehicles(filters), {
         staleTime: 1000 * 60 * 10, // 10 minutes
     });
 }
