@@ -7,6 +7,7 @@ import {
   HStack,
   Center,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import { RiImageAddFill } from "react-icons/ri";
 import { FormInput } from "../FormInput";
@@ -30,6 +31,7 @@ type ImageType = {
 
 export default function VehicleForm() {
   const { onClose } = useVehicleModal();
+  const toast = useToast();
   const [image, setImage] = useState<ImageType>({
     blob: "",
     url: "",
@@ -66,6 +68,13 @@ export default function VehicleForm() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("vehicles");
+        toast({
+          title: 'Veículo cadastrado.',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right'
+        });
         onClose();
       },
     }

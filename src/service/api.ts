@@ -4,12 +4,7 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 export const api = axios.create({
-  baseURL: "https://vhcshop-backend.onrender.com/",
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "*",
-    "Access-Control-Allow-Methods": "*",
-  },
+  baseURL: "http://localhost:3333/",
 });
 
 const user = cookies.get("user");

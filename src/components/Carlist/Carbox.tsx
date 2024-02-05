@@ -35,11 +35,11 @@ export default function Carbox({ vehicle }: CarboxProps) {
       onClick={handleOpenUpdateVehicleModal}
     >
       <Img
-        src={`https://vhcshop-backend.onrender.com/images/${vehicle.image}`}
+        src={`http://localhost:3333/images/${vehicle.image}`}
         maxW={360}
         maxH={196}
         objectFit="cover"
-        alt="555f5664-da24-46f3-bdc3-4848ff6cfba3"
+        alt="car"
         borderTopRadius={20}
       />
       <Stack spacing={4} p="4" pb="6">

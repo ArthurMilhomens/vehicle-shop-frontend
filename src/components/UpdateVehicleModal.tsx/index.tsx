@@ -8,6 +8,7 @@ import {
   Text,
   Flex,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import VehicleForm from "./VehicleForm";
 import { useUpdateVehicleModal } from "@/contexts/UpdateVehicleModalContext";
@@ -18,6 +19,7 @@ import { queryClient } from "@/service/queryClient";
 
 export default function UpdateVehicleModal() {
   const { isOpen, onClose, vehicle } = useUpdateVehicleModal();
+  const toast = useToast();
 
   const handleDeleteVehicle = useMutation(
     async () => {
@@ -28,6 +30,13 @@ export default function UpdateVehicleModal() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("vehicles");
+        toast({
+          title: 'Veículo deletado.',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right'
+        });
         onClose();
       },
     }

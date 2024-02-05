@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Stack, HStack, Center, Image } from "@chakra-ui/react";
+import { Button, Stack, HStack, Center, Image, useToast } from "@chakra-ui/react";
 import { RiImageAddFill } from "react-icons/ri";
 import { FormInput } from "../FormInput";
 import { useMutation } from "react-query";
@@ -25,6 +25,7 @@ type ImageType = {
 
 export default function UpdateVehicleForm() {
   const { onClose, vehicle } = useUpdateVehicleModal();
+  const toast = useToast();
   const [image, setImage] = useState<ImageType>({
     blob: "",
     url: "",
@@ -73,6 +74,13 @@ export default function UpdateVehicleForm() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("vehicles");
+        toast({
+          title: 'Veículo atualizado.',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right'
+        });
         onClose();
       },
     }

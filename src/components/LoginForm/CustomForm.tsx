@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Checkbox, Flex, Text, Stack } from "@chakra-ui/react";
+import { Button, Checkbox, Flex, Text, Stack, useToast } from "@chakra-ui/react";
 import { RiLock2Line, RiUser3Line } from "react-icons/ri";
 import { FormInput } from "../FormInput";
 import { useMutation } from "react-query";
@@ -17,6 +17,7 @@ type LoginFormData = {
 export default function CustomForm() {
   const { onClose } = useLoginModal();
   const cookies = new Cookies();
+  const toast = useToast();
 
   const loginFormSchema = yup
     .object({
@@ -54,6 +55,15 @@ export default function CustomForm() {
       onSuccess: () => {
         onClose();
       },
+      onError: () => {
+        toast({
+          title: 'Credenciais inválidas.',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right'
+        });
+      }
     }
   );
 

@@ -4,14 +4,10 @@ import {
   ModalOverlay,
   ModalContent,
   ModalBody,
-  ModalHeader,
-  Stack,
   Text,
   Flex,
-  Button,
 } from "@chakra-ui/react";
 import VehicleForm from "./VehicleForm";
-import { RiDeleteBin2Line } from "react-icons/ri";
 
 export default function VehicleModal() {
   const { isOpen, onClose } = useVehicleModal();
