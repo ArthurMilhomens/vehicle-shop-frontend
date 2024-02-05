@@ -30,7 +30,7 @@ export default function Carlist() {
       >
         <SimpleGrid minChildWidth={360} gridTemplateColumns="repeat(auto-fit, minmax(360px, 360px))" gap="24px" spacing="5px" mt="15px" paddingLeft="5px">
           {data?.vehicles?.map((vehicle) => (
-            <Carbox vehicle={vehicle} />
+            <Carbox key={vehicle.id} vehicle={vehicle} />
           ))}
         </SimpleGrid>
       </Box>
