@@ -1,6 +1,7 @@
 'use client'
 import Carlist from "@/components/Carlist";
 import LoginForm from "@/components/LoginForm";
+import UpdateVehicleModal from "@/components/UpdateVehicleModal.tsx";
 import VehicleModal from "@/components/VehicleModal.tsx";
 import Head from "next/head";
 
@@ -14,6 +15,7 @@ export default function Home() {
         <Carlist />
         <LoginForm />
         <VehicleModal />
+        <UpdateVehicleModal />
       </main>
     </>
   );

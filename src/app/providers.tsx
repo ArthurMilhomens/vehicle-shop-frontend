@@ -2,6 +2,7 @@
 
 import { LoginModalProvider } from "@/contexts/LoginModalContext";
 import { SidebarDrawerProvider } from "@/contexts/SidebarDrawerContext";
+import { UpdateVehicleModalProvider } from "@/contexts/UpdateVehicleModalContext";
 import { VehicleModalProvider } from "@/contexts/VehicleModalContext";
 import { queryClient } from "@/service/queryClient";
 import { theme } from "@/styles/theme";
@@ -14,7 +15,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <SidebarDrawerProvider>
         <LoginModalProvider>
           <VehicleModalProvider>
-            <ChakraProvider theme={theme}>{children}</ChakraProvider>
+            <UpdateVehicleModalProvider>
+              <ChakraProvider theme={theme}>{children}</ChakraProvider>
+            </UpdateVehicleModalProvider>
           </VehicleModalProvider>
         </LoginModalProvider>
       </SidebarDrawerProvider>

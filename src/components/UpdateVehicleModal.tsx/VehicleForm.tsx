@@ -1,13 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  Button,
-  Stack,
-  HStack,
-  Center,
-  Image,
-} from "@chakra-ui/react";
+import { Button, Stack, HStack, Center, Image } from "@chakra-ui/react";
 import { RiImageAddFill } from "react-icons/ri";
 import { FormInput } from "../FormInput";
 import { useMutation } from "react-query";
@@ -15,6 +9,7 @@ import { api } from "@/service/api";
 import { useState } from "react";
 import { useVehicleModal } from "@/contexts/VehicleModalContext";
 import { queryClient } from "@/service/queryClient";
+import { useUpdateVehicleModal } from "@/contexts/UpdateVehicleModalContext";
 
 type SubmitFormData = {
   name: string;
@@ -26,10 +21,10 @@ type SubmitFormData = {
 type ImageType = {
   blob: Blob | string;
   url: string;
-}
+};
 
-export default function VehicleForm() {
-  const { onClose } = useVehicleModal();
+export default function UpdateVehicleForm() {
+  const { onClose, vehicle } = useUpdateVehicleModal();
   const [image, setImage] = useState<ImageType>({
     blob: "",
     url: "",
@@ -56,10 +51,22 @@ export default function VehicleForm() {
     async (data: SubmitFormData) => {
       const formData = new FormData();
 
-      formData.append("image", image.blob);
+      if (image.blob !== "") {
+        formData.append("image", image.blob);
+      } else {
+        fetch(`http://localhost:3333/images/${vehicle.image}`)
+        .then((response) =>
+          response.blob()
+        )
+        .then(blob => {
+          formData.append("image", blob);
+        });
+      }
+
+      
       formData.append("Data", JSON.stringify(data));
 
-      const response = await api.post("vehicles", formData)
+      const response = await api.put(`vehicles/update?id=${vehicle.id}`, formData);
 
       return response.data;
     },
@@ -93,44 +100,42 @@ export default function VehicleForm() {
     >
       <FormInput
         label="Nome do veículo"
-        {...register("name")}
+        {...register("name", { value: vehicle.name })}
         error={errors.name}
       />
-      <FormInput label="Marca" {...register("brand")} error={errors.brand} />
-      <FormInput label="Modelo" {...register("model")} error={errors.model} />
+      <FormInput
+        label="Marca"
+        {...register("brand", { value: vehicle.brand })}
+        error={errors.brand}
+      />
+      <FormInput
+        label="Modelo"
+        {...register("model", { value: vehicle.model })}
+        error={errors.model}
+      />
       <FormInput
         label="Preço (R$)"
-        {...register("price")}
+        {...register("price", { value: vehicle.price })}
         type="number"
         error={errors.price}
       />
       <HStack justify="center" w="full">
         <label htmlFor="avatar" style={{ width: "100%" }}>
-          {image.url === "" ? (
-            <Center
-              borderStyle="dashed"
-              borderWidth="2px"
-              borderColor="#F59265"
-              w="full"
-              cursor="pointer"
-              h={280}
-              borderRadius="8px"
-            >
-              <RiImageAddFill color="#F59265" fontSize="45px" />
-            </Center>
-          ) : (
-            <Image
-              src={image.url}
-              w="100%"
-              h={280}
-              objectFit="cover"
-              alt="carro"
-              borderRadius={8}
-              borderStyle="dashed"
-              borderWidth="2px"
-              borderColor="#F59265"
-            />
-          )}
+          <Image
+            src={
+              image.url === ""
+                ? `http://localhost:3333/images/${vehicle.image}`
+                : image.url
+            }
+            w="100%"
+            h={280}
+            objectFit="cover"
+            alt="carro"
+            borderRadius={8}
+            borderStyle="dashed"
+            borderWidth="2px"
+            borderColor="#F59265"
+          />
         </label>
         <input
           id="avatar"
@@ -170,7 +175,7 @@ export default function VehicleForm() {
           }}
           isLoading={isSubmitting}
           type="submit"
-          isDisabled={isSubmitting || (image.url === "")}
+          disabled={isSubmitting || image.blob === ""}
         >
           Cadastrar
         </Button>

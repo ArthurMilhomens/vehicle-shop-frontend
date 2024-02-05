@@ -34,26 +34,8 @@ export default function VehicleModal() {
         >
           <Flex alignItems="flex-start" justifyContent="space-between" w="full">
             <Text fontSize="30px">Cadastrar veículo</Text>
-            {/* <Button
-              w="220px"
-              bgColor="warning.500"
-              color="gray.50"
-              variant="filled"
-              leftIcon={<RiDeleteBin2Line />}
-              fontSize="18px"
-              fontWeight="400"
-              _hover={{
-                bgColor: "red.500",
-              }}
-              _focus={{
-                bgColor: "warning.500",
-                borderColor: "warning.500",
-              }}
-            >
-              Excluir veículo
-            </Button> */}
           </Flex>
-          <Text fontSize="18px" alignSelf="flex-start" fontWeight="300" color="gray.100">Adicione as informações do seu veículo</Text>
+          <Text fontSize="18px" alignSelf="flex-start" fontWeight="300" color="gray.100" mt="2">Adicione as informações do seu veículo</Text>
           <VehicleForm />
         </ModalBody>
       </ModalContent>
