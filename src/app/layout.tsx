@@ -7,8 +7,6 @@ import Sidebar from "@/components/Sidebar";
 import { useEffect } from "react";
 import { api } from "@/service/api";
 import Cookies from "universal-cookie";
-import { SubmitHandler } from "react-hook-form";
-import { useMutation } from "react-query";
 
 export default function RootLayout({
   children,
@@ -19,19 +17,8 @@ export default function RootLayout({
   const user = cookies.get('user');
 
   useEffect(() => {
-    user ? (api.defaults.headers.common['Authorization'] = `${user.accessToken}`) : handleCreateAdmin.mutateAsync();
+    user && (api.defaults.headers.common['Authorization'] = `${user.accessToken}`);
   },[]);
-
-  const handleCreateAdmin = useMutation(
-    async () => {
-      const response = await api.post("users/create", {
-        email: "admin@admin.com",
-        password: "admin",
-      });
-
-      return response.data;
-    }
-  );
 
   return (
     <html
